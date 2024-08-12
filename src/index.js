@@ -5,6 +5,7 @@ import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
+import 'video-react/dist/video-react.css'; // import css
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
