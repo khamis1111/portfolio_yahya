@@ -1,0 +1,52 @@
+.left {
+    background: #1f21228b !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+.left p {
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    transition: all 100ms ease-in-out;
+}
+
+@media (max-width: 575px) {
+    .left {
+        margin-bottom: 20px !important;
+    }
+}
+
+.adminHome .left p:hover {
+    scale: 0.9;
+}
+
+.adminHome .fields-social {
+    position: relative;
+    transition: all 300ms ease-in-out;
+}
+
+.adminHome .fields-social:hover {
+    scale: 1.050;
+}
+
+.adminHome .fields-social .namefield {
+    text-align: center;
+    opacity: 0;
+    transition: all 300ms ease-in-out;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.adminHome .fields-social:hover .namefield {
+    position: absolute;
+    opacity: 0.1;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+    font-weight: bold;
+    z-index: -999;
+}

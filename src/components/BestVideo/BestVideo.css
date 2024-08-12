@@ -1,0 +1,51 @@
+/* ---------video-card--------- */
+.video-card {
+    position: relative;
+    box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.5) !important;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 10ms ease-in-out;
+}
+
+@media (max-width: 823px) {
+    .video-card {
+        width: inherit !important;
+    }
+}
+
+.video-card:active {
+    scale: 0.9;
+}
+
+.video-card img {
+    width: 100%;
+    height: 100%;
+}
+
+.video-card .video-content {
+    font-weight: bold;
+}
+
+.video-content {
+    background: #1f212250 !important;
+    backdrop-filter: blur(10px) !important;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.video-content:hover {
+    opacity: 1;
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

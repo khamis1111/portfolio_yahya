@@ -1,0 +1,48 @@
+.my-name {
+    font-size: 3rem;
+    line-height: 1;
+    display: inline-block;
+    margin: 15px 0 !important;
+}
+
+
+.my-banner {
+    scale: 1.1;
+    transition: all 200ms ease-in-out;
+    animation: move 10s ease-in-out infinite;
+}
+
+.my-banner:hover,
+.my-banner:active {
+    scale: 1;
+}
+
+
+@media (max-width: 577px) {
+    .title-name {
+        text-align: center;
+    }
+}
+
+
+@keyframes move {
+    0% {
+        transform: translateX(0em) translateY(0em);
+    }
+
+    /* 25% {
+      transform: translateY(-1em) translateX(-1em);
+      rotate: -10deg;
+    } */
+    50% {
+        transform: translateY(1em) translateX(-1em);
+    }
+
+    /* 75% {
+      transform: translateY(-1.25em) translateX(1em);
+      rotate: 10deg;
+    } */
+    100% {
+        transform: translateX(0em) translateY(0em);
+    }
+}

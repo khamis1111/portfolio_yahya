@@ -1,0 +1,16 @@
+.adminAllReels .reels-card {
+    position: relative;
+    z-index: 999;
+}
+
+.adminAllReels .control-btn {
+    position: absolute;
+    top: 5px;
+    right: 2%;
+    left: 2%;
+    opacity: 0;
+}
+
+.adminAllReels .reels-card:hover .control-btn {
+    opacity: 1;
+}

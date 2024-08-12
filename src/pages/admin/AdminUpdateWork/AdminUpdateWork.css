@@ -1,0 +1,16 @@
+.adminAllWork .work-card {
+    position: relative;
+    z-index: 999;
+}
+
+.adminAllWork .control-btn {
+    position: absolute;
+    top: 5px;
+    right: 2%;
+    left: 2%;
+    opacity: 0;
+}
+
+.adminAllWork .work-card:hover .control-btn {
+    opacity: 1;
+}
