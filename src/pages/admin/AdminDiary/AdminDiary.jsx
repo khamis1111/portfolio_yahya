@@ -91,7 +91,7 @@ const AdminDiary = () => {
     return (
         <Row className='adminDiary'>
             <SdebarAdmin />
-            <Col sm={9} className='right ps-5'>
+            <Col sm={9} className='right'>
                 <div className="form-container">
                     <form className="form" >
                         <div className="form-group">
@@ -171,11 +171,11 @@ const AdminDiary = () => {
                                         )
                                     })
                                 ) :
-                                <div className='d-flex justify-content-center fs-3 fw-bold text-effect'>{errorMsg || 'There is no Diary'}</div>
+                                <div className='d-flex justify-content-center fs-3 fw-bold text-effect text-center'>{errorMsg || 'There is no Diary'}</div>
                             :
                             <div className='d-flex justify-content-center'><Loader name={'Loading...'} /></div>
                         :
-                        <div className='d-flex justify-content-center fs-3 fw-bold text-effect'>{errorMsg || 'Add Personal Data First :)'}</div>
+                        <div className='d-flex justify-content-center fs-3 fw-bold text-effect text-center'>{errorMsg || 'Add Personal Data First :)'}</div>
                 }
             </Col>
             <ToastContainer />

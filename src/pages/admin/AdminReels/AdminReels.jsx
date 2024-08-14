@@ -50,7 +50,7 @@ const AdminReels = () => {
     return (
         <Row className='adminAllReels'>
             <SdebarAdmin />
-            <Col sm={9} className='right ps-5'>
+            <Col sm={9} className='right'>
                 <Row>
                     <Col sm={12} className='d-flex justify-content-center flex-wrap gap-3'>
                         {
@@ -61,17 +61,17 @@ const AdminReels = () => {
                                             return (
                                                 <div className='reels-card'>
                                                     <Link to={`/reel/${res._id}`}>
-                                                    <div className='video-card text-center video-container' style={{width: '220px', height: '450px'}}>
-                                                        <img
-                                                            src={`https://img.youtube.com/vi/${getIdEmbedUrl(res.reelsVideo)}/hqdefault.jpg`}
-                                                            alt={res.name}
-                                                        />
-                                                        <div className='video-content'>
-                                                            <p className='text-center text-wrap'>{res.name}</p>
-                                                            <div>{res.likes} Likes</div>
+                                                        <div className='video-card text-center video-container' style={{ width: '220px', height: '450px' }}>
+                                                            <img
+                                                                src={`https://img.youtube.com/vi/${getIdEmbedUrl(res.reelsVideo)}/hqdefault.jpg`}
+                                                                alt={res.name}
+                                                            />
+                                                            <div className='video-content'>
+                                                                <p className='text-center text-wrap'>{res.name}</p>
+                                                                <div>{res.likes} Likes</div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </Link>
+                                                    </Link>
                                                     <div className="control-btn d-flex justify-content-between">
                                                         <Button variant='danger' onClick={(e) => handleDeleteReels(e, res._id)}>Delete</Button>
                                                         <Link to={`/admin/updateReels/${res._id}`}>
@@ -82,7 +82,7 @@ const AdminReels = () => {
                                             )
                                         })
                                     ) :
-                                    <div className='d-flex justify-content-center fs-3 fw-bold text-effect'>{'There is no Reels Videos'}</div>
+                                    <div className='d-flex justify-content-center fs-3 fw-bold text-effect text-center'>{'There is no Reels Videos'}</div>
                                 :
                                 <div className='d-flex justify-content-center'><Loader name={'Loading...'} /></div>
                         }

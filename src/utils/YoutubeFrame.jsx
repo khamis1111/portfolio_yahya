@@ -52,7 +52,7 @@ const YoutubeFrame = ({ youtubeUrl }) => {
                                 }
                             </style>
 
-                    <a href=${`${getEmbedUrl(youtubeUrl)}?autoplay=1`}>
+                    <a href=${`${getEmbedUrl(youtubeUrl)}?autoplay=1&mute=1&amp;controls=1`}>
                         <img src=${`https://img.youtube.com/vi/${getIdEmbedUrl(youtubeUrl)}/hqdefault.jpg`} alt='Yaya-Yamani'>
                             <svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 24 24' fill='none'         stroke='#ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-play-circle'><circle cx='12' cy='12' r='10'></circle><polygon points='10 8 16 12 10 16 10 8'></polygon> 
                             </svg>
@@ -62,7 +62,7 @@ const YoutubeFrame = ({ youtubeUrl }) => {
                 title="Yaya-Yamani"
                 frameBorder={0}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen=""
+                allowFullScreen
             ></iframe>
         </div>
     )

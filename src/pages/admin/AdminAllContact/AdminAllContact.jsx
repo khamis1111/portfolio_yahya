@@ -48,7 +48,7 @@ const AdminAllContact = () => {
     return (
         <Row className='adminContact'>
             <SdebarAdmin />
-            <Col sm={9} className='right ps-5'>
+            <Col sm={9} className='right'>
                 {
                     dataLoading ?
                         allContact.data && allContact.data.length !== 0 ?
@@ -68,11 +68,10 @@ const AdminAllContact = () => {
                                     )
                                 })
                             ) :
-                            <div className='d-flex justify-content-center fs-3 fw-bold text-effect'>{errorMsg || 'There is no Contact Message'}</div>
+                            <div className='d-flex justify-content-center fs-3 fw-bold text-effect text-center'>{errorMsg || 'There is no Contact Message'}</div>
                         :
                         <div className='d-flex justify-content-center'><Loader name={'Loading...'} /></div>
                 }
-
                 {
                     allContact.data && allContact.paginationResult.noOfPages > 1 &&
                     <Pagination getPage={getPage} pageCount={allContact.data && allContact.paginationResult.noOfPages} />

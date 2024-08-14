@@ -53,7 +53,7 @@ const ReelsSection = () => {
                                         return (
                                             <div className='reels-card rounded-5 overflow-hidden '>
                                                 <Link to={`/reel/${res._id}`}>
-                                                    <div className='video-card text-center video-container' style={{width: '230px', height: '500px'}}>
+                                                    <div className='video-card text-center video-container' style={{ width: '230px', height: '500px' }}>
                                                         <img
                                                             src={`https://img.youtube.com/vi/${getIdEmbedUrl(res.reelsVideo)}/hqdefault.jpg`}
                                                             alt={res.name}
@@ -68,7 +68,7 @@ const ReelsSection = () => {
                                         )
                                     })
                                 ) :
-                                <div className='d-flex justify-content-center fs-3 fw-bold text-effect'>{'There is no Reels Videos'}</div>
+                                <div className='d-flex justify-content-center fs-3 fw-bold text-effect text-center'>{'There is no Reels Videos'}</div>
                             :
                             <div className='d-flex justify-content-center'><Loader name={'Loading...'} /></div>
                     }

@@ -55,7 +55,7 @@ const WordPage = () => {
                                         )
                                     })
                                 ) :
-                                <div className='d-flex justify-content-center fs-3 fw-bold text-effect'>{'There is no Work Videos Right Now !'}</div>
+                                <div className='d-flex justify-content-center fs-3 fw-bold text-effect text-center'>{'There is no Work Videos Right Now !'}</div>
                             :
                             <div className='d-flex justify-content-center'><Loader name={'Loading...'} /></div>
                     }

@@ -48,7 +48,7 @@ const AdminAllWork = () => {
     return (
         <Row className='adminAllWork'>
             <SdebarAdmin />
-            <Col sm={9} className='right ps-5'>
+            <Col sm={9} className='right'>
                 <Row>
                     <Col sm={12} className='d-flex justify-content-center flex-wrap gap-3'>
                         {
@@ -74,7 +74,7 @@ const AdminAllWork = () => {
                                             )
                                         })
                                     ) :
-                                    <div className='d-flex justify-content-center fs-3 fw-bold text-effect'>{'There is no Work Videos'}</div>
+                                    <div className='d-flex justify-content-center fs-3 fw-bold text-effect text-center'>{'There is no Work Videos'}</div>
                                 :
                                 <div className='d-flex justify-content-center'><Loader name={'Loading...'} /></div>
                         }

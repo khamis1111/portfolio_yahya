@@ -1,16 +1,15 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Col, Modal, Row } from 'react-bootstrap'
+import { BiCommentDetail } from "react-icons/bi"
 import { useParams } from 'react-router-dom'
 import { GetData } from '../../api/Axios/useGetData'
+import { PostData } from '../../api/Axios/usePostData'
+import { DateFormate } from '../../utils/DateFormate'
+import { getEmbedUrl } from '../../utils/GetEmbedUrl'
+import Loader from '../../utils/Loader/Loader'
 import notify from '../../utils/useToastify'
 import './ReelsDetails.css'
-import { PostData } from '../../api/Axios/usePostData'
-import axios from 'axios'
-import { BiCommentDetail } from "react-icons/bi"
-import Loader from '../../utils/Loader/Loader'
-import { DateFormate } from '../../utils/DateFormate'
-import YoutubeFrame from '../../utils/YoutubeFrame'
-import { getEmbedUrl, getIdEmbedUrl } from '../../utils/GetEmbedUrl'
 
 const ReelsDetails = () => {
     const reelsId = useParams('id')
@@ -130,7 +129,7 @@ const ReelsDetails = () => {
                         allowfullscreen
                     />
                 </Col>
-                <Col sm={4} className='d-flex align-items-start flex-column justify-content-end gap-4'>
+                <Col sm={4} className='activityReels d-flex align-items-start flex-column justify-content-end gap-4'>
                     <div className='like'>
                         <label className="container d-flex flex-column align-items-center">
                             <input type="checkbox" checked={isLike} onClick={(e) => handleAddLike(e)} />

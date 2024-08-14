@@ -91,7 +91,7 @@ const AdminUpdateReels = () => {
     return (
         <Row className='adminReels'>
             <SdebarAdmin />
-            <Col sm={9} className='right ps-5'>
+            <Col sm={9} className='right'>
                 <div className="form-container">
                     <form className="form" >
                         <div className="d-flex justify-content-center align-items-center">
@@ -121,7 +121,7 @@ const AdminUpdateReels = () => {
                             <input required="" name="likes" id="likes" type="number" value={likes} onChange={(e) => setLikes(e.target.value)} />
                         </div>
                         <Row>
-                            <Col>
+                            <Col sm={6}>
                                 <div className="form-group">
                                     <div className="d-flex align-items-center gap-2">
                                         <label for="create" className='m-0 fs-6'>Created At:</label>
@@ -130,7 +130,7 @@ const AdminUpdateReels = () => {
                                 </div>
 
                             </Col>
-                            <Col>
+                            <Col sm={6}>
                                 <div className="form-group">
                                     <div className="d-flex align-items-center gap-2">
                                         <label for="create" className='m-0 fs-6'>Updated At:</label>

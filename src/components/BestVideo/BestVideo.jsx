@@ -5,6 +5,7 @@ import ButtonGlitch from '../../utils/ButtonGlitch/ButtonGlitch'
 import Loader from '../../utils/Loader/Loader'
 import YoutubeFrame from '../../utils/YoutubeFrame'
 import './BestVideo.css'
+import ReactPlayer from 'react-player'
 
 const BestVideo = ({ allData, allWork, dataLoading }) => {
 
@@ -48,12 +49,12 @@ const BestVideo = ({ allData, allWork, dataLoading }) => {
                                             )
                                         } else {
                                             return (
-                                                <div className='d-flex justify-content-center fs-3 fw-bold text-effect'>{'There is no Top Work Videos Now !'}</div>
+                                                <div className='d-flex justify-content-center fs-3 fw-bold text-effect text-center'>{'There is no Top Work Videos Now !'}</div>
                                             )
                                         }
                                     })
                                 ) :
-                                <div className='d-flex justify-content-center fs-3 fw-bold text-effect'>{'There is no Work Videos Now !'}</div>
+                                <div className='d-flex justify-content-center fs-3 fw-bold text-effect text-center'>{'There is no Work Videos Now !'}</div>
                             :
                             <div className='d-flex justify-content-center'><Loader name={'Loading...'} /></div>
                     }

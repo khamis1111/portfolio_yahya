@@ -23,6 +23,16 @@ body,
     overflow-x: hidden;
 }
 
+.right {
+    padding-left: 3rem !important;
+}
+
+@media (max-width: 575px) {
+    .right {
+        padding: 0 !important;
+    }
+}
+
 /*
    Start Utility
 */

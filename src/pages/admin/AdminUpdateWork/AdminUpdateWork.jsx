@@ -94,7 +94,7 @@ const AdminUpdateWork = () => {
     return (
         <Row className='adminWork'>
             <SdebarAdmin />
-            <Col sm={9} className='right ps-5'>
+            <Col sm={9} className='right'>
                 <div className="form-container">
                     <form className="form" >
                         <Row>

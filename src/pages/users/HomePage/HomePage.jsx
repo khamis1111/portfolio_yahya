@@ -4,7 +4,6 @@ import fire from "../../../videos/Fire.mp4"
 import BestVideo from '../../../components/BestVideo/BestVideo'
 import { GetData } from '../../../api/Axios/useGetData'
 import notify from '../../../utils/useToastify'
-import ReelsSection from '../../../components/ReelsSection/ReelsSection'
 
 const HomePage = ({ allData }) => {
     const [dataLoading, setDataLoading] = useState(false);

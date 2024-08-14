@@ -271,3 +271,13 @@
         opacity: 0;
     }
 }
+
+/* Resize activityReels */
+
+@media (max-width: 577px) {
+    .activityReels {
+        position: absolute;
+        bottom: 65px;
+        left: 20px;
+    }
+}
