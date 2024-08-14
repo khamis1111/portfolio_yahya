@@ -9,6 +9,8 @@ import axios from 'axios'
 import { BiCommentDetail } from "react-icons/bi"
 import Loader from '../../utils/Loader/Loader'
 import { DateFormate } from '../../utils/DateFormate'
+import YoutubeFrame from '../../utils/YoutubeFrame'
+import { getEmbedUrl, getIdEmbedUrl } from '../../utils/GetEmbedUrl'
 
 const ReelsDetails = () => {
     const reelsId = useParams('id')
@@ -112,14 +114,24 @@ const ReelsDetails = () => {
 
     return (
         <div className='main-bg1 reelsDetails'>
-            <Row>
-                <Col>
+            <Row className='justify-content-center'>
+                <Col sm={4}>
                 </Col>
-                <Col className='video-reels'>
-                    <video height={'100%'} className='rounded-4' src={`${reelsDetails.data?.reelsVideo}`} muted autoPlay controls />
+                <Col sm={4} className='video-reels'>
+                    {/* <video width={'100%'} height={'100%'} className='rounded-4' src={`${reelsDetails.data?.reelsVideo}`} muted autoPlay controls /> */}
+                    <iframe
+                        loading="lazy"
+                        width="100%"
+                        height="100%"
+                        src={getEmbedUrl(reelsDetails.data?.reelsVideo)}
+                        title={reelsDetails.data?.name}
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                    />
                 </Col>
-                <Col className='d-flex align-items-start flex-column justify-content-end gap-4'>
-                    <div>
+                <Col sm={4} className='d-flex align-items-start flex-column justify-content-end gap-4'>
+                    <div className='like'>
                         <label className="container d-flex flex-column align-items-center">
                             <input type="checkbox" checked={isLike} onClick={(e) => handleAddLike(e)} />
                             <div className="checkmark">

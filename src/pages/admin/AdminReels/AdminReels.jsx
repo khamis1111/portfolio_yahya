@@ -9,6 +9,7 @@ import { DeleteData } from '../../../api/Axios/useDeleteData'
 import Loader from '../../../utils/Loader/Loader'
 import './AdminReels.css'
 import Pagination from '../../../utils/Pagination'
+import { getIdEmbedUrl } from '../../../utils/GetEmbedUrl'
 
 const AdminReels = () => {
     const [allReels, setAllReels] = useState([]);
@@ -60,15 +61,17 @@ const AdminReels = () => {
                                             return (
                                                 <div className='reels-card'>
                                                     <Link to={`/reel/${res._id}`}>
-                                                        <div className='video-card text-center video-container' style={{ width: '225px',height: '400px' }}>
-                                                            {/* <img src={res.imgCover} alt="" className='' /> */}
-                                                            <video src={`${res.reelsVideo}`} />
-                                                            <div className='video-content'>
-                                                                {res.name}
-                                                                <div>{res.likes} Likes</div>
-                                                            </div>
+                                                    <div className='video-card text-center video-container' style={{width: '220px', height: '450px'}}>
+                                                        <img
+                                                            src={`https://img.youtube.com/vi/${getIdEmbedUrl(res.reelsVideo)}/hqdefault.jpg`}
+                                                            alt={res.name}
+                                                        />
+                                                        <div className='video-content'>
+                                                            <p className='text-center text-wrap'>{res.name}</p>
+                                                            <div>{res.likes} Likes</div>
                                                         </div>
-                                                    </Link>
+                                                    </div>
+                                                </Link>
                                                     <div className="control-btn d-flex justify-content-between">
                                                         <Button variant='danger' onClick={(e) => handleDeleteReels(e, res._id)}>Delete</Button>
                                                         <Link to={`/admin/updateReels/${res._id}`}>

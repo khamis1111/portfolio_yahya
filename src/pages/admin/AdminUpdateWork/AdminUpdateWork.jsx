@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Col, Row } from 'react-bootstrap'
-import SdebarAdmin from '../../../utils/SidebarAdmin'
-import './AdminUpdateWork.css'
-import notify from '../../../utils/useToastify'
-import { Link, useParams } from 'react-router-dom'
+import { Col, Row } from 'react-bootstrap'
+import { useParams } from 'react-router-dom'
+import { EditData } from '../../../api/Axios/useEditData'
 import { GetData } from '../../../api/Axios/useGetData'
-import Loader from '../../../utils/Loader/Loader'
+import { PostDataImage } from '../../../api/Axios/usePostData'
 import ButtonGlitch from '../../../utils/ButtonGlitch/ButtonGlitch'
+import SdebarAdmin from '../../../utils/SidebarAdmin'
 import UploadImg from '../../../utils/UploadImg/UploadImg'
-import { EditDataImage } from '../../../api/Axios/useEditData'
+import notify from '../../../utils/useToastify'
+import YoutubeFrame from '../../../utils/YoutubeFrame'
+import './AdminUpdateWork.css'
 
 const AdminUpdateWork = () => {
     const workId = useParams('id')
@@ -31,23 +32,34 @@ const AdminUpdateWork = () => {
     const handleUpdateWork = (e) => {
         e.preventDefault()
         setLoading(true)
-        const formData = new FormData();
-        formData.append("name", name);
-        formData.append("details[Shot]", shot);
-        formData.append("details[Edited]", edited);
-        formData.append("details[Sound]", sound);
-        formData.append("details[Motion]", motion);
-        formData.append("details[Script]", script);
-        formData.append("details[Producer]", producer);
-        formData.append("details[Produced]", produced);
-        formData.append("topVideo", isTop);
-        formData.append("workVideo", videoSrc);
-        formData.append("imgCover", imgSelector);
-        EditDataImage(`/api/v1/work/${workId.id}`, formData).then(res => {
-            notify('Update Your Work Successfully', 'success')
-            setLoading(false)
+
+        const formDataImg = new FormData();
+        formDataImg.append('image', imgSelector);
+        PostDataImage('https://api.imgbb.com/1/upload?key=4f4a682edac68442d7b34952d2d5b23c', formDataImg).then(res => {
+            EditData(`/api/v1/work/${workId.id}`, {
+                name,
+                details: {
+                    Shot: shot,
+                    Edited: edited,
+                    Sound: sound,
+                    Motion: motion,
+                    Script: script,
+                    Producer: producer,
+                    Produced: produced,
+                },
+                topVideo: isTop,
+                workVideo: videoSrc,
+                imgCover: res.data.data.display_url,
+            }).then(res => {
+                notify('Update Your Work Successfully', 'success')
+                localStorage.setItem('dataId', res.data.data._id)
+                setLoading(false)
+            }).catch(err => {
+                notify(err.response.data.msg || err.response.data.message || err.response.data.errors[0].msg, 'error')
+                setLoading(false)
+            });
         }).catch(err => {
-            notify(err.response.data.msg || err.response.data.message || err.response.data.errors[0].msg, 'error')
+            notify(err, 'error')
             setLoading(false)
         });
     }
@@ -92,13 +104,24 @@ const AdminUpdateWork = () => {
                                     <UploadImg setImgSelector={setImgSelector} setVideoSrc={setVideoSrc} videoSrc={videoSrc} imgSelector={imgSelector} type={'img'} />
                                 </div>
                             </Col>
-                            <Col className="d-flex justify-content-center align-items-center">
-                                <div className="form-group">
-                                    <label for="imgProfile" className='fs-5'>Work Video: </label>
-                                    <UploadImg setImgSelector={setImgSelector} setVideoSrc={setVideoSrc} videoSrc={videoSrc} imgSelector={imgSelector} type={'video'} />
-                                </div>
-                            </Col>
+                            {
+                                videoSrc &&
+                                <>
+                                    <Col className="d-flex justify-content-center align-items-center">
+                                        <div className="form-group w-100 h-100">
+                                            <label for="imgProfile" className='fs-5'>Work Video: </label>
+                                            <div style={{ width: '300px', height: '200px' }} className=''>
+                                                <YoutubeFrame youtubeUrl={videoSrc} />
+                                            </div>
+                                        </div>
+                                    </Col>
+                                </>
+                            }
                         </Row>
+                        <div className="form-group">
+                            <label for="workv">Work Video</label>
+                            <input required="" value={videoSrc} placeholder='https://www.youtube.com/watch?v=ID' name="workv" id="workv" type="text" onChange={(e) => setVideoSrc(e.target.value)} />
+                        </div>
                         <div className="form-group">
                             <label for="name">Your Name</label>
                             <input required="" name="name" id="name" type="text" value={name} onChange={(e) => setName(e.target.value)} />

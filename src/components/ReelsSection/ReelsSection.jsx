@@ -8,6 +8,7 @@ import './ReelsSection.css'
 import TitleCard from '../TitleCard/TitleCard';
 import { Col, Row } from 'react-bootstrap';
 import Pagination from '../../utils/Pagination';
+import { getIdEmbedUrl } from '../../utils/GetEmbedUrl';
 
 const ReelsSection = () => {
     const [allReels, setAllReels] = useState([]);
@@ -52,10 +53,13 @@ const ReelsSection = () => {
                                         return (
                                             <div className='reels-card rounded-5 overflow-hidden '>
                                                 <Link to={`/reel/${res._id}`}>
-                                                    <div className='video-card text-center video-container' style={{ width: '225px', height: '400px' }}>
-                                                        <video src={`${res.reelsVideo}`} />
+                                                    <div className='video-card text-center video-container' style={{width: '230px', height: '500px'}}>
+                                                        <img
+                                                            src={`https://img.youtube.com/vi/${getIdEmbedUrl(res.reelsVideo)}/hqdefault.jpg`}
+                                                            alt={res.name}
+                                                        />
                                                         <div className='video-content'>
-                                                            {res.name}
+                                                            <p className='text-center text-wrap'>{res.name}</p>
                                                             <div>{res.likes} Likes</div>
                                                         </div>
                                                     </div>

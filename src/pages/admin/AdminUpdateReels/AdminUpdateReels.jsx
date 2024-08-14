@@ -11,6 +11,7 @@ import { DateFormate } from '../../../utils/DateFormate'
 import './AdminUpdateReels.css'
 import Loader from '../../../utils/Loader/Loader'
 import { DeleteData } from '../../../api/Axios/useDeleteData'
+import YoutubeFrame from '../../../utils/YoutubeFrame'
 
 const AdminUpdateReels = () => {
     const reelsId = useParams('id')
@@ -94,12 +95,22 @@ const AdminUpdateReels = () => {
                 <div className="form-container">
                     <form className="form" >
                         <div className="d-flex justify-content-center align-items-center">
-                            <div className="form-group">
-                                <label for="imgProfile" className='fs-5'>Reels Video: </label>
-                                <div className=''>
-                                    <UploadImg setVideoSrc={setVideoSrc} videoSrc={videoSrc} type={'video'} />
-                                </div>
-                            </div>
+                            {
+                                videoSrc &&
+                                <>
+                                    <div className="form-group w-100 h-100">
+                                        <label for="reel" className='fs-5'>Reels Video: </label>
+                                        <div>
+                                            <YoutubeFrame youtubeUrl={videoSrc} />
+                                        </div>
+                                    </div>
+                                </>
+                            }
+                        </div>
+
+                        <div className="form-group">
+                            <label for="reelv">Reel Video</label>
+                            <input required="" value={videoSrc} placeholder='https://www.youtube.com/shorts/ID' name="reelv" id="reelv" type="text" onChange={(e) => setVideoSrc(e.target.value)} />
                         </div>
                         <div className="form-group">
                             <label for="name">Your Name</label>

@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import { GetData } from '../../api/Axios/useGetData'
 import notify from '../../utils/useToastify'
 import { Player } from 'video-react'
+import YoutubeFrame from '../../utils/YoutubeFrame'
 
 const VideoDetails = () => {
     const workId = useParams('id')
@@ -26,15 +27,19 @@ const VideoDetails = () => {
 
     return (
         <div className='main-bg1 rounded-5 '>
-            <TitleCard name={workDetails.data?.name} />
+            <TitleCard name={`${workDetails.data?.name} `} />
             <Row>
                 <Col sm={12} className='video-container mb-4 p-0 m-0'>
-                    {/* <video autoPlay loop controls id="background-video" src={workDetails.data?.workVideo} /> */}
-                    <Player
-                        playsInline
-                        src={workDetails.data?.workVideo}
-                        autoPlay
-                    />
+                    {
+                        workDetails.data?.workVideo.startsWith('https://www.youtube.com/') ?
+                            <YoutubeFrame youtubeUrl={workDetails.data?.workVideo} />
+                            :
+                            < Player
+                                playsInline
+                                src={workDetails.data?.workVideo}
+                                autoPlay
+                            />
+                    }
                 </Col>
                 <Col sm={12} className='second-bg rounded-5 p-4 d-flex flex-column gap-3 fs-5'>
                     <h1 className='text-contact'>Details:</h1>

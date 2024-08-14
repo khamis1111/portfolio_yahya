@@ -1,9 +1,10 @@
 import { Col, Row } from 'react-bootstrap'
-import ButtonGlitch from '../../utils/ButtonGlitch/ButtonGlitch'
 import { Link } from 'react-router-dom'
-import './BestVideo.css'
-import { Player } from 'video-react';
+import { Player } from 'video-react'
+import ButtonGlitch from '../../utils/ButtonGlitch/ButtonGlitch'
 import Loader from '../../utils/Loader/Loader'
+import YoutubeFrame from '../../utils/YoutubeFrame'
+import './BestVideo.css'
 
 const BestVideo = ({ allData, allWork, dataLoading }) => {
 
@@ -15,12 +16,17 @@ const BestVideo = ({ allData, allWork, dataLoading }) => {
                     {
                         allData.data && allData.data.length > 0 ? (
                             <>
-                                <Player
-                                    playsInline
-                                    src={allData.data && allData.data[0].mainVideo}
-                                    autoPlay
-                                    muted
-                                />
+                                {
+                                    allData.data[0].mainVideo.startsWith('https://www.youtube.com/') ?
+                                        <YoutubeFrame youtubeUrl={allData.data[0].mainVideo} />
+                                        :
+                                        < Player
+                                            playsInline
+                                            src={allData.data && allData.data[0].mainVideo}
+                                            autoPlay
+                                            muted
+                                        />
+                                }
                             </>
                         ) : <video autoPlay loop muted controls id="background-video" src={''} />
                     }

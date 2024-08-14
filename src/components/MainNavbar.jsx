@@ -17,17 +17,18 @@ const MainNavbar = () => {
                     >
                         <Offcanvas.Header closeButton>
                             <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${'md'}`}>
-                                YAYVV YMANII
+                                    
                             </Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body>
-                            <Nav className="justify-content-end flex-grow-1 pe-3 gap-3">
+                            <Nav className="justify-content-center flex-grow-1 pe-3 gap-3">
                                 <Link to={'/'}>HOME</Link>
                                 <Link to={'/work'}>WORK</Link>
-                                <Link to={'/diary'}>DIARY</Link>
+                                <Link to={'/allReels'} className='text-effect light-effect'>REELS</Link>
+                                {/* <Link to={'/diary'}>DIARY</Link> */}
                                 <Link to={'/biography'}>BIOGRAPHY</Link>
                                 <Link to={'/contact'}>CONTACT</Link>
-                                <Link to={'/addReels'} className='text-effect light-effect'>REELS</Link>
+                                
                                 {/* <NavDropdown
                                     title="Dropdown"
                                     id={`offcanvasNavbarDropdown-expand-${'md'}`}
@@ -42,6 +43,7 @@ const MainNavbar = () => {
                                     </NavDropdown.Item>
                                 </NavDropdown> */}
                             </Nav>
+                            <Link to={'/'}>YAYVV YMANII</Link>
                             {/* <Form className="d-flex">
                                 <Form.Control
                                     type="search"

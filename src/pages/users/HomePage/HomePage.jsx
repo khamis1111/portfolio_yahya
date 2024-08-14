@@ -27,7 +27,7 @@ const HomePage = ({ allData }) => {
 
     return (
         <div className='main-cover1'>
-            <video loop autoPlay={"autoplay"} muted ref={vidRef} src={fire} id="background-video" className="main-video"></video>
+            <video loop autoPlay muted ref={vidRef} src={fire} id="background-video" className="main-video"></video>
             <TitleName allData={allData} />
             <BestVideo allData={allData} allWork={allWork} dataLoading={dataLoading} />
         </div>

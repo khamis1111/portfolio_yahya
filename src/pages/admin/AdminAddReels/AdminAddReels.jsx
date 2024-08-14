@@ -5,6 +5,7 @@ import notify from '../../../utils/useToastify'
 import ButtonGlitch from '../../../utils/ButtonGlitch/ButtonGlitch'
 import UploadImg from '../../../utils/UploadImg/UploadImg'
 import { PostDataImage } from '../../../api/Axios/usePostData'
+import YoutubeFrame from '../../../utils/YoutubeFrame'
 // import './AdminAddReels.css'
 
 const AdminAddReels = () => {
@@ -39,19 +40,29 @@ const AdminAddReels = () => {
                 <div className="form-container">
                     <form className="form" >
                         <div className="d-flex justify-content-center align-items-center">
-                            <div className="form-group">
-                                <label for="imgProfile" className='fs-5'>Reels Video: </label>
-                                <div className=''>
-                                    <UploadImg setVideoSrc={setVideoSrc} videoSrc={videoSrc} type={'video'} />
-                                </div>
-                            </div>
+                            {
+                                videoSrc &&
+                                <>
+                                    <div className="form-group w-100 h-100">
+                                        <label for="reel" className='fs-5'>Reels Video: </label>
+                                        <div>
+                                            <YoutubeFrame youtubeUrl={videoSrc} />
+                                        </div>
+                                    </div>
+                                </>
+                            }
+                        </div>
+
+                        <div className="form-group">
+                            <label for="reelv">Reel Video</label>
+                            <input required="" placeholder='https://www.youtube.com/shorts/ID' name="reelv" id="reelv" type="text" onChange={(e) => setVideoSrc(e.target.value)} />
                         </div>
                         <div className="form-group">
-                            <label for="name">Your Name</label>
+                            <label for="name">Reel Name</label>
                             <input required="" name="name" id="name" type="text" value={name} onChange={(e) => setName(e.target.value)} />
                         </div>
                         <div className="form-group">
-                            <label for="likes">Video Likes</label>
+                            <label for="likes">Reel Likes</label>
                             <input required="" name="likes" id="likes" type="number" value={likes} onChange={(e) => setLikes(e.target.value)} />
                         </div>
                         <div className="text-end">

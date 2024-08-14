@@ -1,25 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { convertToFileObjectURL } from '../convertToFileObjectURL';
 import './UploadImg.css';
-
 const UploadImg = ({ setImgSelector, setVideoSrc, type, videoSrc, imgSelector }) => {
     const [convertImgSelector, setConvertImgSelector] = useState(null);
     const [convertVideoSrc, setConvertVideoSrc] = useState(null);
-    
+
     // Convert img and Video To ObjectURLFile
     useEffect(() => {
         const convertData = async () => {
-            if (videoSrc !== null) {
-                const videoURL = await convertToFileObjectURL(videoSrc);
-                setConvertVideoSrc(videoURL);
-            }
+            // if (videoSrc !== null) {
+            //     const videoURL = await convertToFileObjectURL(videoSrc);
+            //     setConvertVideoSrc(videoURL);
+            // }
             if (imgSelector !== null) {
                 const imgURL = await convertToFileObjectURL(imgSelector);
                 setConvertImgSelector(imgURL);
             }
         };
         convertData();
-    }, [imgSelector, videoSrc])
+    }, [imgSelector])
 
     const [icon, setIcon] = useState(null);
     const [video, setVideo] = useState(null);

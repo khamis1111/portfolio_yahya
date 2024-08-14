@@ -12,7 +12,6 @@ import { GetData } from "./api/Axios/useGetData"
 import AdminAddReels from "./pages/admin/AdminAddReels/AdminAddReels"
 import AdminAllContact from "./pages/admin/AdminAllContact/AdminAllContact"
 import AdminAllWork from "./pages/admin/AdminAllWork/AdminAllWork"
-import AdminDiary from "./pages/admin/AdminDiary/AdminDiary"
 import AdminHome from "./pages/admin/AdminHome/AdminHome"
 import AdminReels from "./pages/admin/AdminReels/AdminReels"
 import AdminUpdateReels from "./pages/admin/AdminUpdateReels/AdminUpdateReels"
@@ -37,7 +36,7 @@ const App = () => {
       setAllData(myData)
       setDataLoading(true)
     }).catch(err => {
-      notify(err.response.data.msg || err.response.data.message || err.response.data.errors[0].msg, 'error')
+      notify(err || err.response.data.msg || err.response.data.message || err.response.data.errors[0].msg, 'error')
     });
   }
 
@@ -65,12 +64,12 @@ const App = () => {
               <Route path="/admin/allWork" element={<AdminAllWork />} />
               <Route path="/admin/updateWork/:id" element={<AdminUpdateWork />} />
               <Route path="/admin/allContact" element={<AdminAllContact />} />
-              <Route path="/admin/diary" element={<AdminDiary />} />
+              {/* <Route path="/admin/diary" element={<AdminDiary />} /> */}
               <Route path="/admin/reels" element={<AdminReels />} />
               <Route path="/admin/updateReels/:id" element={<AdminUpdateReels />} />
               <Route path="/admin/addReels" element={<AdminAddReels />} />
               <Route path="/reel/:id" element={<ReelsDetails />} />
-              <Route path="/addReels" element={<ReelsSection />} />
+              <Route path="/allReels" element={<ReelsSection />} />
             </Routes>
           </div>
         </div>

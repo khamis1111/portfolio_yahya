@@ -4,11 +4,12 @@ import UploadImg from '../../../utils/UploadImg/UploadImg'
 import ButtonGlitch from '../../../utils/ButtonGlitch/ButtonGlitch'
 import SdebarAdmin from '../../../utils/SidebarAdmin'
 import './AdminHome.css'
-import { PostDataImage } from '../../../api/Axios/usePostData'
+import { PostData, PostDataImage } from '../../../api/Axios/usePostData'
 import notify from '../../../utils/useToastify'
 import { GetData } from '../../../api/Axios/useGetData'
 import { DeleteData } from '../../../api/Axios/useDeleteData'
-import { EditDataImage } from '../../../api/Axios/useEditData'
+import { EditData } from '../../../api/Axios/useEditData'
+import YoutubeFrame from '../../../utils/YoutubeFrame'
 
 const AdminHome = () => {
     const dataId = localStorage.getItem('dataId')
@@ -33,51 +34,71 @@ const AdminHome = () => {
         e.preventDefault()
         setLoading(true)
 
-        const formData = new FormData();
-        formData.append("name", name);
-        formData.append("nameProfile", nameProfile);
-        formData.append("career", career);
-        formData.append("email", email);
-        formData.append("socailMedia[linkFacebook]", linkFacebook);
-        formData.append("socailMedia[linkInstargram]", linkInstargram);
-        formData.append("socailMedia[linkBehance]", linkBehance);
-        formData.append("socailMedia[linkYoutube]", linkYoutube);
-        formData.append("mainVideo", videoSrc);
-        formData.append("imgProfile", imgSelector);
+        const formDataImg = new FormData();
+        formDataImg.append('image', imgSelector && imgSelector);
 
-        PostDataImage('/api/v1/userInfo', formData).then(res => {
-            notify('Add Your Data Successfully', 'success')
-            localStorage.setItem('dataId', res.data.data._id)
-            setLoading(false)
-            setIsAdd(true)
+        PostDataImage('https://api.imgbb.com/1/upload?key=4f4a682edac68442d7b34952d2d5b23c', formDataImg).then(res => {
+            PostData('/api/v1/userInfo', {
+                name,
+                nameProfile,
+                career,
+                email,
+                socailMedia: {
+                    linkFacebook,
+                    linkInstargram,
+                    linkBehance,
+                    linkYoutube
+                },
+                mainVideo: videoSrc,
+                imgProfile: res.data.data.display_url,
+            }).then(res => {
+                notify('Add Your Data Successfully', 'success')
+                localStorage.setItem('dataId', res.data.data._id)
+                setLoading(false)
+                setIsAdd(true)
+            }).catch(err => {
+                notify(err.response.data.msg || err.response.data.message || err.response.data.errors[0].msg, 'error')
+                setLoading(false)
+            });
+
         }).catch(err => {
-            notify(err.response.data.msg || err.response.data.message || err.response.data.errors[0].msg, 'error')
+            notify(err, 'error')
             setLoading(false)
         });
+
+
     }
 
     const handleUpdateData = (e) => {
         e.preventDefault()
         setLoading(true)
 
-        const formData = new FormData();
-        formData.append("name", name);
-        formData.append("nameProfile", nameProfile);
-        formData.append("career", career);
-        formData.append("email", email);
-        formData.append("socailMedia[linkFacebook]", linkFacebook);
-        formData.append("socailMedia[linkInstargram]", linkInstargram);
-        formData.append("socailMedia[linkBehance]", linkBehance);
-        formData.append("socailMedia[linkYoutube]", linkYoutube);
-        formData.append("mainVideo", videoSrc);
-        formData.append("imgProfile", imgSelector);
-
-        EditDataImage(`/api/v1/userInfo/${dataId}`, formData).then(res => {
-            notify('Update Your Data Successfully', 'success')
-            localStorage.setItem('dataId', res.data.data._id)
-            setLoading(false)
+        const formDataImg = new FormData();
+        formDataImg.append('image', imgSelector);
+        PostDataImage('https://api.imgbb.com/1/upload?key=4f4a682edac68442d7b34952d2d5b23c', formDataImg).then(res => {
+            EditData(`/api/v1/userInfo/${dataId}`, {
+                name,
+                nameProfile,
+                career,
+                email,
+                socailMedia: {
+                    linkFacebook,
+                    linkInstargram,
+                    linkBehance,
+                    linkYoutube
+                },
+                mainVideo: videoSrc,
+                imgProfile: res.data.data.display_url,
+            }).then(res => {
+                notify('Update Your Data Successfully', 'success')
+                localStorage.setItem('dataId', res.data.data._id)
+                setLoading(false)
+            }).catch(err => {
+                notify(err.response.data.msg || err.response.data.message || err.response.data.errors[0].msg, 'error')
+                setLoading(false)
+            });
         }).catch(err => {
-            notify(err.response.data.msg || err.response.data.message || err.response.data.errors[0].msg, 'error')
+            notify(err, 'error')
             setLoading(false)
         });
     }
@@ -88,6 +109,7 @@ const AdminHome = () => {
             DeleteData(`/api/v1/userInfo/${dataId}`).then(res => {
                 notify('Delete Your Data Successfully', 'success')
                 localStorage.removeItem('dataId')
+                setVideoSrc('')
                 setName('')
                 setNameProfile('')
                 setCareer('')
@@ -97,6 +119,7 @@ const AdminHome = () => {
                 setLinkBehance('')
                 setLinkYoutube('')
                 setIsAdd(false)
+                setOneData(null)
             }).catch(err => {
                 notify(err.response.data.msg || err.response.data.message || err.response.data.errors[0].msg, 'error')
             });
@@ -144,13 +167,25 @@ const AdminHome = () => {
                                     <UploadImg setImgSelector={setImgSelector} setVideoSrc={setVideoSrc} videoSrc={videoSrc} imgSelector={imgSelector} type={'img'} />
                                 </div>
                             </Col>
-                            <Col className="d-flex justify-content-center align-items-center">
-                                <div className="form-group">
-                                    <label for="imgProfile" className='fs-5'>Your Home Video: </label>
-                                    <UploadImg setImgSelector={setImgSelector} setVideoSrc={setVideoSrc} videoSrc={videoSrc} imgSelector={imgSelector} type={'video'} />
-                                </div>
-                            </Col>
+                            {
+                                videoSrc &&
+                                <>
+                                    <Col className="d-flex justify-content-center align-items-center m-auto">
+                                        <div className="form-group w-100 h-100 justify-content-center align-items-center">
+                                            <label for="imgProfile" className='fs-5'>Your Home Video: </label>
+                                            <div style={{ width: '300px', height: '200px' }} className=''>
+                                                <YoutubeFrame youtubeUrl={videoSrc} />
+                                            </div>
+                                        </div>
+                                    </Col>
+                                </>
+                            }
+
                         </Row>
+                        <div className="form-group">
+                            <label for="real">Your Home Video</label>
+                            <input value={videoSrc} required="" placeholder='https://www.youtube.com/watch?v=ID' name="real" id="real" type="text" onChange={(e) => setVideoSrc(e.target.value)} />
+                        </div>
                         <Row>
                             <Col>
                                 <div className="form-group">

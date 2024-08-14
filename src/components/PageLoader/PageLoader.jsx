@@ -6,7 +6,7 @@ const PageLoader = ({ dataLoading }) => {
     return (
         <div>
             {
-                !dataLoading && <div className='page-loader'><Loader name={'Loading...'} /></div>
+                !dataLoading && localStorage.getItem('dataId') ? <div className='page-loader'><Loader name={'Loading...'} /></div> : null
             }
         </div>
     )
