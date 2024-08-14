@@ -36,7 +36,7 @@ const App = () => {
       setAllData(myData)
       setDataLoading(true)
     }).catch(err => {
-      notify(err || err.response.data.msg || err.response.data.message || err.response.data.errors[0].msg, 'error')
+      notify(err && err.response.data.msg && err.response.data.message && err.response.data.errors[0].msg, 'error')
     });
   }
 
