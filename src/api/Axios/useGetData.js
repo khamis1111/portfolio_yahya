@@ -7,7 +7,7 @@ export const GetData = async (url, params) => {
 export const GetDataToken = async (url) => {
   const config = {
     headers: {
-      // Authorization: `Bearer ${localStorage.getItem("token")}`,
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   };
   return await baseUrl.get(url, config);
