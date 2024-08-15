@@ -10,10 +10,10 @@ import ReactPlayer from 'react-player'
 const BestVideo = ({ allData, allWork, dataLoading }) => {
 
     return (
-        <div className="main-bg1 rounded-5  justify-content-center">
+        <div className="main-bg1 rounded-5 justify-content-center">
             {/* <div className='d-inline-block p-0'><TitleCard name={'Latest_videos'} /></div> */}
             <Row className='mb-5'>
-                <Col sm={12} className='video-container mb-4 p-0 pe-2'>
+                <Col sm={12} className='video-container mb-4 p-0'>
                     {
                         allData.data && allData.data.length > 0 ? (
                             <>

@@ -176,3 +176,31 @@ End Utility
 .page-link:focus {
     --bs-pagination-focus-box-shadow: 0 0 8px 0.10rem var(--bg-container)
 }
+
+/* ScrollBar */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(245, 4, 4, 0);
+}
+
+::-webkit-scrollbar {
+    float: right;
+    width: 5px;
+    background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px #00000000;
+    background-color: var(--text-primary);
+}
+
+::-moz-selection {
+    background: var(--text-primary);
+    text-shadow: none;
+    color: var(--bg-primary);
+}
+
+::selection {
+    background: var(--text-primary);
+    text-shadow: none;
+    color: #fff;
+}
