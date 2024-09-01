@@ -35,9 +35,10 @@ const AdminHome = () => {
         setLoading(true)
 
         const formDataImg = new FormData();
-        formDataImg.append('image', imgSelector && imgSelector);
+        formDataImg.append('file', imgSelector && imgSelector);
 
-        PostDataImage('https://api.imgbb.com/1/upload?key=4f4a682edac68442d7b34952d2d5b23c', formDataImg).then(res => {
+        PostDataImage('https://www.imghippo.com/v1/upload?api_key=fJ7z5QRl2bbKLwUYhlAouRPAgpCuTKJw', formDataImg).then(res => {
+            console.log(res)
             PostData('/api/v1/userInfo', {
                 name,
                 nameProfile,
@@ -50,7 +51,7 @@ const AdminHome = () => {
                     linkYoutube
                 },
                 mainVideo: videoSrc,
-                imgProfile: res.data.data.display_url,
+                imgProfile: res.data.data.view_url,
             }).then(res => {
                 notify('Add Your Data Successfully', 'success')
                 localStorage.setItem('dataId', res.data.data._id)
