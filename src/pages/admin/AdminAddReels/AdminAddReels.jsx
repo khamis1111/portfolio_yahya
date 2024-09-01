@@ -4,7 +4,7 @@ import SdebarAdmin from '../../../utils/SidebarAdmin'
 import notify from '../../../utils/useToastify'
 import ButtonGlitch from '../../../utils/ButtonGlitch/ButtonGlitch'
 import UploadImg from '../../../utils/UploadImg/UploadImg'
-import { PostDataImage } from '../../../api/Axios/usePostData'
+import { PostData, PostDataImage } from '../../../api/Axios/usePostData'
 import YoutubeFrame from '../../../utils/YoutubeFrame'
 // import './AdminAddReels.css'
 
@@ -19,12 +19,12 @@ const AdminAddReels = () => {
     const handleAddReels = (e) => {
         e.preventDefault()
         setLoading(true)
-        const formData = new FormData();
-        formData.append("name", name);
-        formData.append("likes", likes);
-        formData.append("reelsVideo", videoSrc);
 
-        PostDataImage(`/api/v1/reels`, formData).then(res => {
+        PostData(`/api/v1/reels`, {
+            name,
+            likes,
+            reelsVideo: videoSrc
+        }).then(res => {
             notify('Add Your Reels Successfully', 'success')
             setLoading(false)
         }).catch(err => {
